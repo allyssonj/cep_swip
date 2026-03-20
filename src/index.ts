@@ -1,7 +1,9 @@
-import { Elysia } from "elysia";
+import { Elysia } from 'elysia'
+import { env } from './config/env'
+import { cepRoutes } from './module/cep/cep.routes'
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+export const app = new Elysia()
+  .use(cepRoutes)
+  .listen(env.APP_PORT)
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+console.log(`🚀 Server is running on http://localhost:${env.APP_PORT}`)
